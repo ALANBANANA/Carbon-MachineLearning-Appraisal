@@ -135,7 +135,7 @@ for index3, row3 in carbon_dic3.iterrows():
     elif carbon_dic3_copy.loc[index3, "通勤方式"] == 2:
         carbon_dic3_copy.loc[index3, "通勤碳排放kgCO_2"] = carbon_dic3_copy.loc[index3, "通勤距离往返km"]*12/1000
     elif carbon_dic3_copy.loc[index3, "通勤方式"] == 3:
-        carbon_dic3_copy.loc[index3, "通勤碳排放kgCO_2"] = carbon_dic3_copy.loc[index3, "通勤距离往返km"]*180.2
+        carbon_dic3_copy.loc[index3, "通勤碳排放kgCO_2"] = carbon_dic3_copy.loc[index3, "通勤距离往返km"]*0.458
 carbon_total = pd.concat([carbon1, carbon2, carbon_dic3_copy], axis=1)
 carbon_total.drop("通勤方式kgCO_2", axis=1, inplace=True)
 carbon_total.to_excel("all_element_carbon.xlsx", index=False)
