@@ -43,7 +43,7 @@ for index2, row2 in deal_data.iterrows():  # 已经转张
     elif deal_data.at[index2, "每月打印纸张/张"] == 2:
         deal_data.at[index2, "每月打印纸张/张"] = random.randint(50, 100)
     elif deal_data.at[index2, "每月打印纸张/张"] == 3:
-        deal_data.at[index2, "每月打印纸张/张"] = random.randint(100 ,150)
+        deal_data.at[index2, "每月打印纸张/张"] = random.randint(100, 150)
 
 deal_data["是否垃圾分类"] = deal_data["是否垃圾分类"].replace({"否": 0, "是": 1}).astype(int)
 # 肉类处理
@@ -69,8 +69,8 @@ deal_data["每月打印纸张/张"] = deal_data["每月打印纸张/张"]/3000 #
 deal_data["每季度购新衣服/件"] = deal_data["每季度购新衣服/件"]/90
 deal_data["每年鞋/双"] = deal_data["每年鞋/双"]/365
 """电费处理"""
-deal_data["夏秋电费/元"] = deal_data["夏秋电费/元"]*1.6  # 已经转kWh
-deal_data["冬春电费/元"] = deal_data["冬春电费/元"]*1.6  # 已经转kWh
+deal_data["夏秋电费/元"] = deal_data["夏秋电费/元"]*1.6/deal_data["宿舍人数/人"]  # 已经转kWh
+deal_data["冬春电费/元"] = deal_data["冬春电费/元"]*1.6/deal_data["宿舍人数/人"]  # 已经转kWh
 """打包处理"""
 deal_data["塑料袋数量/个"] = deal_data["塑料袋数量/个"]*2.8/7000  # 已经转kg
 deal_data["打包盒数量/个"] = deal_data["打包盒数量/个"]*23.7/7000  # 已经转kg
@@ -84,8 +84,6 @@ deal_data["白米饭，面条/g"] = deal_data["白米饭，面条/g"]*3/1000  # 
 
 deal_data.drop(["猪肉/次", "鸡肉/次", "牛肉/次"], axis=1, inplace=True)
 deal_data.to_excel("update_not_label.xlsx",index=False)
-
-
 
 """开一个新标签的表格"""
 new_item_dic = {}
